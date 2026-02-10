@@ -3,9 +3,9 @@ import { useState } from 'react';
 function App() {
 
   return (
-    <>
-      <h1>Rendering!</h1>
-    </>
+    <div>
+      <h1 className="text-white">Rendering!</h1>
+    </div>
   )
 }
 
