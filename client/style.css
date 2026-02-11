@@ -1,1 +1,18 @@
 @import "tailwindcss";
+
+@theme {
+  --inset-shadow-hologram:
+    8px 8px 24px cyan inset,
+    -8px -8px 24px cyan inset;
+}
+
+@layer components {
+  .hologram {
+    @apply border-[cyan];
+    @apply border-1;
+    /* @apply inset-shadow-sm;
+    @apply inset-shadow-[cyan]; */
+    @apply inset-shadow-hologram;
+    @apply backdrop-blur-[3px];
+  }
+}
