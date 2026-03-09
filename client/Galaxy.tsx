@@ -10,7 +10,7 @@ function Galaxy () {
   }, []);
 
   return (
-    <canvas id="galaxy" className="w-[480] h-[360]"></canvas>
+    <canvas id="galaxy" className="size-full fixed"></canvas>
   );
 }
 

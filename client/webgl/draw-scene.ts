@@ -4,6 +4,14 @@ type ProgramInfo = {program: WebGLProgram, attribLocations: {[key: string]: numb
 type BufferObject = {seed: WebGLBuffer, color: WebGLBuffer};
 
 export default function drawScene(gl: WebGLRenderingContext, programInfo: ProgramInfo, buffers: BufferObject, modelViewMatrix: mat4, n: number) {
+  // adjust buffer size to displayed size
+  // https://webglfundamentals.org/webgl/lessons/webgl-resizing-the-canvas.html
+  gl.canvas.width = (gl.canvas as HTMLCanvasElement).clientWidth;
+  gl.canvas.height = (gl.canvas as HTMLCanvasElement).clientHeight;
+
+  // reset viewport to accommodate new width and height
+  gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
   gl.clearDepth(1.0);
   gl.enable(gl.DEPTH_TEST);
