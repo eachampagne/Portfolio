@@ -14,7 +14,7 @@ function App() {
   return (
     <DisplayContext value = {{displayState, setDisplayState}} >
       <Galaxy />
-      <div className='flex flex-col items-center relative'>
+      <div className='flex flex-col items-center'>
         <Header />
         <Content />
         <ControlPanel />
