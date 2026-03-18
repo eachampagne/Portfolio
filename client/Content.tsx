@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 
-import { DisplayContext } from './DisplayContext';
+import DisplayContext from './DisplayContext';
 
 import DisplayState from '../types/displayState';
 

@@ -1,19 +1,25 @@
+import { useState } from 'react';
+
 import Galaxy from './Galaxy';
 import Header from './Header';
 import Content from './Content';
 import ControlPanel from './ControlPanel';
-import DisplayContextProvider from './DisplayContext';
+import DisplayContext from './DisplayContext';
+
+import DisplayState from '../types/displayState';
 
 function App() {
+  const [displayState, setDisplayState] = useState(DisplayState.Content);
+
   return (
-    <DisplayContextProvider>
+    <DisplayContext value = {{displayState, setDisplayState}} >
       <Galaxy />
       <div className='flex flex-col items-center relative'>
         <Header />
         <Content />
         <ControlPanel />
       </div>
-    </DisplayContextProvider>
+    </DisplayContext>
   )
 }
 
