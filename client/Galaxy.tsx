@@ -10,8 +10,17 @@ function Galaxy () {
 
   useEffect(() => {
     runWebgl();
-    document.getElementById('galaxy')?.addEventListener('click', () => {
-      setDisplayState(DisplayState.Galaxy);
+    document.getElementById('galaxy')?.addEventListener('mousedown', () => {
+      setDisplayState(d => {
+        switch (d) {
+          case DisplayState.ControlPanel:
+            return DisplayState.ControlPanel;
+          case DisplayState.WebGLError:
+            return DisplayState.WebGLError;
+          default:
+            return DisplayState.Galaxy;
+        }
+      });
     });
   }, []);
 
