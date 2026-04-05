@@ -19,8 +19,18 @@ function Header () {
     }
   }
 
+  const handleHeaderClick = () => {
+    setDisplayState(d => {
+      if (d === DisplayState.WebGLError) {
+        return DisplayState.WebGLError;
+      } else {
+        return DisplayState.Content;
+      }
+    })
+  }
+
   return (
-    <div className={`hologram w-5/6 h-96 flex-none m-8 relative ${styleByDisplayState()} transition-all duration-500`} onClick={() => setDisplayState(DisplayState.Content)}>
+    <div className={`hologram w-5/6 h-96 flex-none m-8 relative ${styleByDisplayState()} transition-all duration-500`} onClick={() => handleHeaderClick()}>
       <h1 className='text-white'>Header!</h1>
     </div>
 

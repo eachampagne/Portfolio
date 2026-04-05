@@ -54,23 +54,17 @@ function initShaderProgram(gl: WebGLRenderingContext, vertexSource: string, frag
 }
 
 
-function main() {
+function main(errorCb?: () => void) {
   const n = 1000;
   const diskFraction = 0.7;
 
   const canvas = document.getElementById('galaxy') as HTMLCanvasElement;
 
-  canvas.addEventListener("mousedown", handleMouseDown);
-  canvas.addEventListener("mousemove", handleMouseMove);
-  window.addEventListener("mouseup", handleMouseUp);
-
   const gl = canvas.getContext('webgl');
 
   if (gl === null) {
     console.error('Unable to get WebGL context.');
-
-    // TODO: image fallback
-
+    if (errorCb) errorCb();
     return;
   }
 
@@ -79,7 +73,14 @@ function main() {
 
   const shaderProgram = initShaderProgram(gl, vertexSource, fragmentSource);
 
-  if (!shaderProgram) return;
+  if (!shaderProgram) {
+    if (errorCb) errorCb();
+    return;
+  }
+
+  canvas.addEventListener("mousedown", handleMouseDown);
+  canvas.addEventListener("mousemove", handleMouseMove);
+  window.addEventListener("mouseup", handleMouseUp);
 
   const programInfo = {
     program: shaderProgram,
