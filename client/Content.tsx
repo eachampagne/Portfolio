@@ -20,7 +20,7 @@ function Content () {
   }
 
   return (
-    <div className={`hologram w-5/6 h-96 flex-none m-8 relative ${styleByDisplayState()} transition-all duration-500`}>
+    <div className={`hologram w-5/6 h-200 flex-none m-8 relative ${styleByDisplayState()} transition-all duration-500`}>
       <h1 className='text-white'>Content!</h1>
     </div>
 
