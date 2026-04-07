@@ -31,7 +31,7 @@ function initColorBuffer(gl: WebGLRenderingContext, colors: number[]) {
 // n: number of stars
 // diskFraction: the fraction of the total stars in the disk. The rest of the stars are in the bulge.
 function generateStars(n: number, diskFraction: number) {
-  let positions = [] as number[], colors = [] as number[];
+  const positions = [] as number[], colors = [] as number[];
 
   const numDiskStars = Math.trunc(n * diskFraction);
   const numBulgeStars = n - numDiskStars;
@@ -42,8 +42,8 @@ function generateStars(n: number, diskFraction: number) {
     const pos = cylindricalToCartesian([r, theta, phi]);
     const color = [1.0, 1.0, 1.0, 1.0];
 
-    positions = [...positions, ...pos];
-    colors = [...colors, ...color];
+    positions.push(...pos);
+    colors.push(...color);
   }
 
   for (let i = 0; i < numBulgeStars; i++) {
@@ -51,8 +51,8 @@ function generateStars(n: number, diskFraction: number) {
 
     const color = [1.0, 1.0, 1.0, 1.0];
 
-    positions = [...positions, ...pos];
-    colors = [...colors, ...color];
+    positions.push(...pos);
+    colors.push(...color);
   }
 
   return [positions, colors];

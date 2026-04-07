@@ -55,7 +55,7 @@ function initShaderProgram(gl: WebGLRenderingContext, vertexSource: string, frag
 
 
 function main(errorCb?: () => void) {
-  const n = 1000;
+  const n = 50000;
   const diskFraction = 0.7;
 
   const canvas = document.getElementById('galaxy') as HTMLCanvasElement;
