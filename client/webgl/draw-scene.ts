@@ -3,7 +3,21 @@ import { mat4 } from 'gl-matrix';
 type ProgramInfo = {program: WebGLProgram, attribLocations: {[key: string]: number}, uniformLocations: {[key: string]: WebGLUniformLocation | null}};
 type BufferObject = {index: WebGLBuffer, seed: WebGLBuffer, color: WebGLBuffer};
 
-export default function drawScene(gl: WebGLRenderingContext, programInfo: ProgramInfo, buffers: BufferObject, modelViewMatrix: mat4, n: number) {
+export default function drawScene(
+  gl: WebGLRenderingContext,
+  programInfo: ProgramInfo,
+  buffers: BufferObject,
+  modelViewMatrix: mat4,
+  n: number,
+  numArms: number,
+  diskFraction: number,
+  diskRadius: number,
+  rateOfCurvature: number,
+  smearFactor: number,
+  thicknessRatio: number,
+  bulgeRadiusRatio: number,
+  compressionFactor: number
+) {
   // adjust buffer size to displayed size
   // https://webglfundamentals.org/webgl/lessons/webgl-resizing-the-canvas.html
   gl.canvas.width = (gl.canvas as HTMLCanvasElement).clientWidth;
@@ -41,6 +55,49 @@ export default function drawScene(gl: WebGLRenderingContext, programInfo: Progra
     programInfo.uniformLocations.modelViewMatrix,
     false,
     modelViewMatrix
+  );
+
+  gl.uniform1i(
+    programInfo.uniformLocations.n,
+    n
+  );
+  gl.uniform1i(
+    programInfo.uniformLocations.numArms,
+    numArms
+  );
+
+  gl.uniform1f(
+    programInfo.uniformLocations.diskFraction,
+    diskFraction
+  );
+  gl.uniform1f(
+    programInfo.uniformLocations.diskRadius,
+    diskRadius
+  );
+
+  gl.uniform1f(
+    programInfo.uniformLocations.rateOfCurvature,
+    rateOfCurvature
+  );
+
+  gl.uniform1f(
+    programInfo.uniformLocations.smearFactor,
+    smearFactor
+  );
+
+  gl.uniform1f(
+    programInfo.uniformLocations.thicknessRatio,
+    thicknessRatio
+  );
+
+  gl.uniform1f(
+    programInfo.uniformLocations.bulgeRadiusRatio,
+    bulgeRadiusRatio
+  );
+
+  gl.uniform1f(
+    programInfo.uniformLocations.compressionFactor,
+    compressionFactor
   );
 
   {

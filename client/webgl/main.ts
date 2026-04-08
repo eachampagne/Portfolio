@@ -56,7 +56,14 @@ function initShaderProgram(gl: WebGLRenderingContext, vertexSource: string, frag
 
 function main(errorCb?: () => void) {
   const n = 50000;
+  const numArms = 2;
   const diskFraction = 0.7;
+  const diskRadius = 1.5;
+  const rateOfCurvature = 4;
+  const smearFactor = 1.2;
+  const thicknessRatio = 0.05;
+  const bulgeRadiusRatio = 1.0 / 3.0;
+  const compressionFactor = 0.5;
 
   const canvas = document.getElementById('galaxy') as HTMLCanvasElement;
 
@@ -92,13 +99,22 @@ function main(errorCb?: () => void) {
     uniformLocations: {
       projectionMatrix: gl.getUniformLocation(shaderProgram, "uProjectionMatrix"),
       modelViewMatrix: gl.getUniformLocation(shaderProgram, "uModelViewMatrix"),
+      n: gl.getUniformLocation(shaderProgram, "n"),
+      diskFraction: gl.getUniformLocation(shaderProgram, "diskFraction"),
+      diskRadius: gl.getUniformLocation(shaderProgram, "diskRadius"),
+      rateOfCurvature: gl.getUniformLocation(shaderProgram, "rateOfCurvature"),
+      smearFactor: gl.getUniformLocation(shaderProgram, "smearFactor"),
+      thicknessRatio: gl.getUniformLocation(shaderProgram, "thicknessRatio"),
+      numArms: gl.getUniformLocation(shaderProgram, "numArms"),
+      bulgeRadiusRatio: gl.getUniformLocation(shaderProgram, "bulgeRadiusRatio"),
+      compressionFactor: gl.getUniformLocation(shaderProgram, "compressionFactor"),
     },
   };
 
   const buffers = initBuffers(gl, n, diskFraction);
 
   function render() {
-    drawScene(gl as WebGLRenderingContext, programInfo, buffers, modelViewMatrix, n);
+    drawScene(gl as WebGLRenderingContext, programInfo, buffers, modelViewMatrix, n, numArms, diskFraction, diskRadius, rateOfCurvature, smearFactor, thicknessRatio, bulgeRadiusRatio, compressionFactor);
 
     requestAnimationFrame(render);
   }

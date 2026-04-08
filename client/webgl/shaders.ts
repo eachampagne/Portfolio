@@ -12,22 +12,21 @@ export const vertexSource = `
 
   varying lowp vec4 vColor;
 
-  // some of these should be integers
-  int n = 50000;
-  float diskFraction = 0.7;
-  float maxRadius = 1.5;
-  float rateOfCurvature = 4.0;
-  float smearFactor = 1.2;
-  float thicknessRatio = 0.05;
-  int numArms = 2;
-  float bulgeRadius = 0.5;
-  float compressionFactor = 0.5;
+  uniform int n;
+  uniform float diskFraction;
+  uniform float diskRadius;
+  uniform float rateOfCurvature;
+  uniform float smearFactor;
+  uniform float thicknessRatio;
+  uniform int numArms;
+  uniform float bulgeRadiusRatio;
+  uniform float compressionFactor;
 
   vec4 disk(vec4 seed) {
     float rSeed = seed[0], thetaSeed = seed[1], zSeed = seed[2];
 
-    float thickness = thicknessRatio * maxRadius;
-    float r = rSeed * maxRadius;
+    float thickness = thicknessRatio * diskRadius;
+    float r = rSeed * diskRadius;
 
     float theta = 2.0 * PI * thetaSeed + sin(thetaSeed * 2.0 * float(numArms) * PI) / (float(numArms) * smearFactor) + r * rateOfCurvature;
 
@@ -41,7 +40,7 @@ export const vertexSource = `
   }
 
   vec4 bulge(vec4 seed) {
-    float r = seed[0] * bulgeRadius;
+    float r = seed[0] * bulgeRadiusRatio * diskRadius;
     float theta = seed[1] * PI;
     float phi = seed[2] * 2.0 * PI;
 
