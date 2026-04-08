@@ -1,14 +1,26 @@
 export default function initBuffers(gl: WebGLRenderingContext, n: number, diskFraction: number) {
   // const [positions, colors] = generateStars(n, diskFraction);
-  const [positions, colors] = generateSeeds(n);
+  const [indices, positions, colors] = generateSeeds(n);
 
+  const indexBuffer = initIndexBuffer(gl, indices);
   const seedBuffer = initSeedBuffer(gl, positions);
   const colorBuffer = initColorBuffer(gl, colors);
 
   return {
+    index: indexBuffer,
     seed: seedBuffer,
     color: colorBuffer,
   };
+}
+
+function initIndexBuffer(gl: WebGLRenderingContext, indices: number[]) {
+  const indexBuffer = gl.createBuffer();
+
+  gl.bindBuffer(gl.ARRAY_BUFFER, indexBuffer);
+
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(indices), gl.STATIC_DRAW);
+
+  return indexBuffer;
 }
 
 function initSeedBuffer(gl: WebGLRenderingContext, positionSeeds: number[]) {
@@ -30,16 +42,17 @@ function initColorBuffer(gl: WebGLRenderingContext, colors: number[]) {
 }
 
 function generateSeeds(n: number) {
-  const positions = [] as number[], colors = [] as number[];
+  const indices = [] as number[], positions = [] as number[], colors = [] as number[];
 
   for (let i = 0; i < n; i++) {
+    indices.push(i);
     positions.push(Math.random(), Math.random(), Math.random());
 
     const color = [1.0, 1.0, 1.0, 1.0];
     colors.push(...color);
   }
 
-  return [positions, colors];
+  return [indices, positions, colors];
 }
 
 // n: number of stars

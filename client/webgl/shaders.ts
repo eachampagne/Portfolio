@@ -3,6 +3,7 @@
 export const vertexSource = `
   #define PI 3.1415926538
 
+  attribute float aIndex;
   attribute vec4 aSeed;
   attribute vec4 aVertexColor;
 
@@ -13,11 +14,12 @@ export const vertexSource = `
 
   // some of these should be integers
   int n = 50000;
+  float diskFraction = 0.7;
   float maxRadius = 1.5;
   float rateOfCurvature = 4.0;
   float smearFactor = 1.2;
   float thicknessRatio = 0.05;
-  float numArms = 2.0;
+  int numArms = 2;
   float bulgeRadius = 0.5;
   float compressionFactor = 0.5;
 
@@ -27,7 +29,7 @@ export const vertexSource = `
     float thickness = thicknessRatio * maxRadius;
     float r = rSeed * maxRadius;
 
-    float theta = 2.0 * PI * thetaSeed + sin(thetaSeed * 2.0 * numArms * PI) / (numArms * smearFactor) + r * rateOfCurvature;
+    float theta = 2.0 * PI * thetaSeed + sin(thetaSeed * 2.0 * float(numArms) * PI) / (float(numArms) * smearFactor) + r * rateOfCurvature;
 
     float z = zSeed * thickness - (thickness / 2.0);
 
@@ -53,7 +55,16 @@ export const vertexSource = `
 
   void main() {
     gl_PointSize = 1.0;
-    gl_Position = uProjectionMatrix * uModelViewMatrix * bulge(aSeed);
+
+    vec4 position;
+
+    if (aIndex / float(n) < diskFraction) {
+      position = disk(aSeed);
+    } else {
+      position = bulge(aSeed);
+    }
+
+    gl_Position = uProjectionMatrix * uModelViewMatrix * position;
     vColor = aVertexColor;
   }
 

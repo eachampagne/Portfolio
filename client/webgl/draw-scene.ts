@@ -1,7 +1,7 @@
 import { mat4 } from 'gl-matrix';
 
 type ProgramInfo = {program: WebGLProgram, attribLocations: {[key: string]: number}, uniformLocations: {[key: string]: WebGLUniformLocation | null}};
-type BufferObject = {seed: WebGLBuffer, color: WebGLBuffer};
+type BufferObject = {index: WebGLBuffer, seed: WebGLBuffer, color: WebGLBuffer};
 
 export default function drawScene(gl: WebGLRenderingContext, programInfo: ProgramInfo, buffers: BufferObject, modelViewMatrix: mat4, n: number) {
   // adjust buffer size to displayed size
@@ -27,6 +27,7 @@ export default function drawScene(gl: WebGLRenderingContext, programInfo: Progra
 
   mat4.perspective(projectionMatrix, fieldOfView, aspect, zNear, zFar);
 
+  setIndexAttribute(gl, buffers, programInfo);
   setSeedAttribute(gl, buffers, programInfo);
   setColorAttribute(gl, buffers, programInfo);
 
@@ -47,6 +48,25 @@ export default function drawScene(gl: WebGLRenderingContext, programInfo: Progra
     const offset = 0;
     gl.drawArrays(gl.POINTS, offset, vertexCount);
   }
+}
+
+function setIndexAttribute(gl: WebGLRenderingContext, buffers: BufferObject, programInfo: ProgramInfo) {
+  const numComponents = 1;
+  const type = gl.FLOAT;
+  const normalize = false;
+  const stride = 0;
+  const offset = 0;
+  gl.bindBuffer(gl.ARRAY_BUFFER, buffers.index);
+  gl.vertexAttribPointer(
+    programInfo.attribLocations.index,
+    numComponents,
+    type,
+    normalize,
+    stride,
+    offset
+  );
+
+  gl.enableVertexAttribArray(programInfo.attribLocations.index);
 }
 
 function setSeedAttribute(gl: WebGLRenderingContext, buffers: BufferObject, programInfo: ProgramInfo) {

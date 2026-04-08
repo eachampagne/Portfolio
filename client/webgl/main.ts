@@ -85,6 +85,7 @@ function main(errorCb?: () => void) {
   const programInfo = {
     program: shaderProgram,
     attribLocations: {
+      index: gl.getAttribLocation(shaderProgram, "aIndex"),
       seedData: gl.getAttribLocation(shaderProgram, "aSeed"),
       vertexColor: gl.getAttribLocation(shaderProgram, "aVertexColor"),
     },
