@@ -1,5 +1,6 @@
 export default function initBuffers(gl: WebGLRenderingContext, n: number, diskFraction: number) {
-  const [positions, colors] = generateStars(n, diskFraction);
+  // const [positions, colors] = generateStars(n, diskFraction);
+  const [positions, colors] = generateSeeds(n);
 
   const seedBuffer = initSeedBuffer(gl, positions);
   const colorBuffer = initColorBuffer(gl, colors);
@@ -10,12 +11,12 @@ export default function initBuffers(gl: WebGLRenderingContext, n: number, diskFr
   };
 }
 
-function initSeedBuffer(gl: WebGLRenderingContext, positions: number[]) {
+function initSeedBuffer(gl: WebGLRenderingContext, positionSeeds: number[]) {
   const seedBuffer = gl.createBuffer();
 
   gl.bindBuffer(gl.ARRAY_BUFFER, seedBuffer);
 
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positionSeeds), gl.STATIC_DRAW);
 
   return seedBuffer;
 }
@@ -26,6 +27,19 @@ function initColorBuffer(gl: WebGLRenderingContext, colors: number[]) {
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
 
   return colorBuffer;
+}
+
+function generateSeeds(n: number) {
+  const positions = [] as number[], colors = [] as number[];
+
+  for (let i = 0; i < n; i++) {
+    positions.push(Math.random(), Math.random(), Math.random());
+
+    const color = [1.0, 1.0, 1.0, 1.0];
+    colors.push(...color);
+  }
+
+  return [positions, colors];
 }
 
 // n: number of stars
