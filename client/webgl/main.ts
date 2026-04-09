@@ -10,6 +10,15 @@ let isRotating = false;
 const modelViewMatrix = mat4.create();
 mat4.translate(modelViewMatrix, modelViewMatrix, [0.0, 0.0, -6.0]);
 
+let numArms = 2;
+let diskFraction = 0.7;
+let diskRadius = 1.5;
+let rateOfCurvature = 4;
+let smearFactor = 1.2;
+let thicknessRatio = 0.05;
+let bulgeRadiusRatio = 0.33;
+let compressionFactor = 0.5;
+
 function loadShader(gl: WebGLRenderingContext, type: WebGLRenderingContextBase['VERTEX_SHADER'] | WebGLRenderingContextBase['FRAGMENT_SHADER'], source: string) {
   const shader = gl.createShader(type);
 
@@ -56,14 +65,6 @@ function initShaderProgram(gl: WebGLRenderingContext, vertexSource: string, frag
 
 function main(errorCb?: () => void) {
   const n = 50000;
-  const numArms = 2;
-  const diskFraction = 0.7;
-  const diskRadius = 1.5;
-  const rateOfCurvature = 4;
-  const smearFactor = 1.2;
-  const thicknessRatio = 0.05;
-  const bulgeRadiusRatio = 1.0 / 3.0;
-  const compressionFactor = 0.5;
 
   const canvas = document.getElementById('galaxy') as HTMLCanvasElement;
 
@@ -160,5 +161,72 @@ function handleMouseMove(event: MouseEvent) {
     );
   }
 }
+
+export const paramControls = [
+  {
+    name: "Radius of Disk",
+    startingValue: diskRadius,
+    min: 0,
+    max: 10,
+    step: 0.1,
+    set: (value: number) => {diskRadius = value}
+  },
+  {
+    name: "Thickness of Disk (relative to radius)",
+    startingValue: thicknessRatio,
+    min: 0,
+    max: 1,
+    step: 0.01,
+    set: (value: number) => {thicknessRatio = value}
+  },
+  {
+    name: "Number of Arms",
+    startingValue: numArms,
+    min: 0,
+    max: 8,
+    step: 1,
+    set: (value: number) => {numArms = value}
+  },
+  {
+    name: "Rate of Curvature of Spiral Arms",
+    startingValue: rateOfCurvature,
+    min: -10,
+    max: 10,
+    step: 0.1,
+    set: (value: number) => {rateOfCurvature = value}
+  },
+  {
+    name: "Width of Spiral Arms",
+    startingValue: smearFactor,
+    min: 0,
+    max: 5,
+    step: 0.1,
+    set: (value: number) => {smearFactor = value}
+  },
+  {
+    name: "Fraction of stars in disk",
+    startingValue: diskFraction,
+    min: 0,
+    max: 1,
+    step: 0.01,
+    set: (value: number) => {diskFraction = value}
+  },
+  {
+    name: "Bulge Radius (relative to disk)",
+    startingValue: bulgeRadiusRatio,
+    min: 0,
+    max: 1,
+    step: 0.01,
+    set: (value: number) => {bulgeRadiusRatio = value}
+  },
+  {
+    name: "Bulge Height (relative to bulge radius)",
+    startingValue: compressionFactor,
+    min: 0,
+    max: 1,
+    step: 0.01,
+    set: (value: number) => {compressionFactor = value}
+  }
+];
 
 export default main;
