@@ -1,0 +1,89 @@
+[
+  {
+    "name": "Developer Portfolio",
+    "links": [],
+    "repository": "https://github.com/eachampagne/Portfolio",
+    "dates": {
+      "start": "February 2026",
+      "end": "Present"
+    },
+    "techstack": {
+      "languages": ["TypeScript", "GLSL"],
+      "frontend": ["React", "Tailwind CSS", "WebGL", "GL Matrix"],
+      "backend": ["NodeJS", "Express"],
+      "other": [],
+      "development": ["Vite"]
+    },
+    "description": "",
+    "bullets": []
+  },
+  {
+    "name": "Launchpad Refactor",
+    "repository": "https://github.com/eachampagne/Launchpad",
+    "dates": {
+      "start": "May 2026",
+      "end": "Present"
+    },
+    "techstack": {
+      "languages": ["TypeScript", "SQL"],
+      "frontend": ["React", "React Router", "ChakraUI", "React Icons"],
+      "backend": ["NodeJS", "Express", "PostgreSQL", "Prisma", "PassportJS"],
+      "other": ["Axios"],
+      "development": ["Vite"]
+    },
+    "description": "",
+    "bullets": []
+  },
+  {
+    "name": "Launchpad",
+    "links": [],
+    "repository": "https://github.com/Operation-Yuzu/LaunchPad",
+    "dates": {
+      "start": "Jan 2026",
+      "end": "May 2026"
+    },
+    "techstack": {
+      "languages": ["TypeScript"],
+      "frontend": ["React", "React Router", "ChakraUI", "React Icons"],
+      "backend": ["NodeJS", "Express", "PostgreSQL", "Prisma", "PassportJS"],
+      "other": ["Axios"],
+      "development": ["Vite"]
+    },
+    "description": "",
+    "bullets": []
+  },
+  {
+    "name": "StoryTime",
+    "repository": "https://github.com/pastry-pets/StoryTime",
+    "dates": {
+      "start": "Jan 2026",
+      "end": "Jan 2026"
+    },
+    "techstack": {
+      "languages": ["JavaScript"],
+      "frontend": ["React", "React Router"],
+      "backend": ["NodeJS", "Express", "MySQL", "Sequelize", "PassportJS"],
+      "other": ["Axios", "Socket.IO"],
+      "development": ["Webpack", "Babel"]
+    },
+    "description": "",
+    "bullets": []
+  },
+  {
+    "name": "Web Pets",
+    "repository": "https://github.com/pastry-pets/Web-Pets",
+    "dates": {
+      "start": "Dec 2025",
+      "end": "Jan 2026"
+    },
+    "techstack": {
+      "languages": ["JavaScript"],
+      "frontend": ["React", "Tailwind CSS"],
+      "backend": ["NodeJS", "Express", "MongoDB", "Mongoose", "PassportJS"],
+      "other": ["Axios", "JSDoc"],
+      "development": ["Webpack", "Babel"]
+    },
+    "description": "",
+    "bullets": []
+  }
+]

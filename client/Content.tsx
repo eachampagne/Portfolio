@@ -1,5 +1,7 @@
 import { useContext } from 'react';
 
+import projects from './data/projects.json';
+
 import DisplayContext from './DisplayContext';
 import DisplayState from '../types/displayState';
 
@@ -22,6 +24,9 @@ function Content () {
   return (
     <div className={`hologram w-5/6 h-200 flex-none m-8 relative ${styleByDisplayState()} transition-all duration-500`}>
       <h1 className='text-white'>Content!</h1>
+      <ul>
+        {projects.map(project => <li>{project.name}</li>)}
+      </ul>
     </div>
 
   );
