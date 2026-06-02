@@ -164,7 +164,7 @@ function handleMouseMove(event: MouseEvent) {
 
 export const paramControls = [
   {
-    name: "Radius of Disk",
+    name: "Size of Galaxy",
     startingValue: diskRadius,
     min: 0,
     max: 10,
@@ -172,7 +172,7 @@ export const paramControls = [
     set: (value: number) => {diskRadius = value}
   },
   {
-    name: "Thickness of Disk (relative to radius)",
+    name: "Thickness of Disk",
     startingValue: thicknessRatio,
     min: 0,
     max: 1,
@@ -188,7 +188,7 @@ export const paramControls = [
     set: (value: number) => {numArms = value}
   },
   {
-    name: "Rate of Curvature of Spiral Arms",
+    name: "Curvature of Spiral Arms",
     startingValue: rateOfCurvature,
     min: -10,
     max: 10,

@@ -28,7 +28,15 @@ export const vertexSource = `
     float thickness = thicknessRatio * diskRadius;
     float r = rSeed * diskRadius;
 
-    float theta = 2.0 * PI * thetaSeed + sin(thetaSeed * 2.0 * float(numArms) * PI) / (float(numArms) * smearFactor) + r * rateOfCurvature;
+    float theta;
+    if (numArms != 0 && smearFactor != 0.0) {
+      // dividing out the diskRadius means that changing the radius scales the galaxy uniformly
+      theta = 2.0 * PI * thetaSeed + sin(thetaSeed * 2.0 * float(numArms) * PI) / (float(numArms) * smearFactor) + r * rateOfCurvature / diskRadius;
+    } else if (numArms != 0) {
+      theta = 2.0 * PI * thetaSeed + r * rateOfCurvature / diskRadius;
+    } else {
+      theta = 2.0 * PI * thetaSeed;
+    }
 
     float z = zSeed * thickness - (thickness / 2.0);
 
