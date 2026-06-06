@@ -1,9 +1,11 @@
 import { useContext } from 'react';
 
-import projects from './data/projects.json';
+import projectsAll from './data/projects.json';
 
 import DisplayContext from './DisplayContext';
 import DisplayState from '../types/displayState';
+
+const projects = projectsAll.filter(project => !project.hidden);
 
 function Content () {
   const { displayState } = useContext(DisplayContext);

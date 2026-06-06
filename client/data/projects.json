@@ -1,6 +1,7 @@
 [
   {
     "name": "Developer Portfolio",
+    "hidden": false,
     "links": [],
     "repository": "https://github.com/eachampagne/Portfolio",
     "dates": {
@@ -14,11 +15,15 @@
       "other": [],
       "development": ["Vite"]
     },
-    "description": "",
-    "bullets": []
+    "description": "This very site! Click the background to interact with the galaxy (assuming WebGL is allowed).",
+    "bullets": [
+      "Displayed projects using React and Tailwind CSS",
+      "Used WebGL to create an interactive galaxy background"
+    ]
   },
   {
     "name": "Launchpad Refactor",
+    "hidden": true,
     "repository": "https://github.com/eachampagne/Launchpad",
     "dates": {
       "start": "May 2026",
@@ -31,11 +36,12 @@
       "other": ["Axios"],
       "development": ["Vite"]
     },
-    "description": "",
+    "description": "Post-presentation improvements",
     "bullets": []
   },
   {
     "name": "Launchpad",
+    "hidden": false,
     "links": [],
     "repository": "https://github.com/Operation-Yuzu/LaunchPad",
     "dates": {
@@ -49,11 +55,18 @@
       "other": ["Axios"],
       "development": ["Vite"]
     },
-    "description": "",
-    "bullets": []
+    "description": "A homepage builder",
+    "bullets": [
+      "Created custom WidgetFrame React component to wrap widgets and encapsulate resizing and positioning logic",
+      "Created email, calendar, and timer widgets, styled with Chakra UI components such as Button, Flex, and Scroll Area",
+      "Integrated Gmail and Google Calendar APIs to display user data, used googleapis-batcher to consolidate email requests",
+      "Designed Prisma schemas for use with PostgreSQL database",
+      "Incorporated GitHub API to display live changelog on homepage"
+    ]
   },
   {
     "name": "StoryTime",
+    "hidden": false,
     "repository": "https://github.com/pastry-pets/StoryTime",
     "dates": {
       "start": "Jan 2026",
@@ -66,11 +79,15 @@
       "other": ["Axios", "Socket.IO"],
       "development": ["Webpack", "Babel"]
     },
-    "description": "",
-    "bullets": []
+    "description": "Collaborative Storytelling",
+    "bullets": [
+      "Overhauled existing codebase to integrate Socket.IO websockets and synchronize clients",
+      "Created React component which uses context to display current information anywhere in the application"
+    ]
   },
   {
     "name": "Web Pets",
+    "hidden": false,
     "repository": "https://github.com/pastry-pets/Web-Pets",
     "dates": {
       "start": "Dec 2025",
@@ -83,7 +100,11 @@
       "other": ["Axios", "JSDoc"],
       "development": ["Webpack", "Babel"]
     },
-    "description": "",
-    "bullets": []
+    "description": "Care for a virtual pet",
+    "bullets": [
+      "Ran server on Node.js, using Express for routing and MongoDB with Mongoose to save pet data",
+      "Ensured correct flow of information throughout React frontend to ensure client stayed in sync with database",
+      "Styled application with Tailwind CSS, including responsive layout for mobile devices; documented code with JSDoc"
+    ]
   }
 ]
