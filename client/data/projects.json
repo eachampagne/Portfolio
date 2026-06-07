@@ -2,7 +2,7 @@
   {
     "name": "Developer Portfolio",
     "hidden": false,
-    "links": [],
+    "link": "",
     "repository": "https://github.com/eachampagne/Portfolio",
     "dates": {
       "start": "February 2026",
@@ -15,7 +15,7 @@
       "other": [],
       "development": ["Vite"]
     },
-    "description": "This very site! Click the background to interact with the galaxy (assuming WebGL is allowed).",
+    "description": "This very site! Click the background to interact with the galaxy (requires WebGL).",
     "bullets": [
       "Displayed projects using React and Tailwind CSS",
       "Used WebGL to create an interactive galaxy background"
@@ -24,6 +24,7 @@
   {
     "name": "Launchpad Refactor",
     "hidden": true,
+    "link": "https://yuzulaunchpad.com/",
     "repository": "https://github.com/eachampagne/Launchpad",
     "dates": {
       "start": "May 2026",
@@ -42,7 +43,7 @@
   {
     "name": "Launchpad",
     "hidden": false,
-    "links": [],
+    "link": "https://yuzulaunchpad.com/",
     "repository": "https://github.com/Operation-Yuzu/LaunchPad",
     "dates": {
       "start": "Jan 2026",

@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import projectsAll from './data/projects.json';
 
 import DisplayContext from './DisplayContext';
+import Project from './Project';
 import DisplayState from '../types/displayState';
 
 const projects = projectsAll.filter(project => !project.hidden);
@@ -23,12 +24,11 @@ function Content () {
     }
   }
 
+  // TODO: if I add tabs, make sure the height animates smoothly when switching between them
   return (
-    <div className={`hologram w-5/6 h-200 flex-none m-8 relative ${styleByDisplayState()} transition-all duration-500`}>
-      <h1 className='text-white'>Content!</h1>
-      <ul>
-        {projects.map(project => <li>{project.name}</li>)}
-      </ul>
+    <div className={`hologram w-5/6 flex-none m-8 p-8 relative ${styleByDisplayState()} transition-all duration-500`}>
+      <h2 className='text-white text-2xl font-medium'>Projects</h2>
+      {projects.map(project => <Project project={project} />)}
     </div>
 
   );
