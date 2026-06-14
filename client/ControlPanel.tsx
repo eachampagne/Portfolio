@@ -47,14 +47,16 @@ function ControlPanel () {
   }
 
   return (
-    <div className={`hologram w-5/6 flex-none m-8 fixed ${styleByDisplayState()} transition-all duration-500`} onClick={() => openControlPanel()}>
-      <h1 className='text-white'>Control Panel!</h1>
-      <button onClick={(event) => {event.stopPropagation(); toggleControlPanel()}} className='bg-blue-700 text-white'>{`${displayState === DisplayState.ControlPanel ? 'Close' : 'Open'} Control Panel`}</button>
-      <div className="flex flex-col w-1/4">
+    <div className={`hologram w-5/6 flex-none m-8 p-8 text-white fixed ${styleByDisplayState()} transition-all duration-500`} onClick={() => openControlPanel()}>
+      <h2 className='text-2xl font-medium mb-6'>Control Panel</h2>
+      <button onClick={(event) => {event.stopPropagation(); toggleControlPanel()}} className='absolute right-5 top-4 text-white'>{`${displayState === DisplayState.ControlPanel ? 'Close' : 'Open'} Control Panel`}</button>
+      <div className="px-8">
         {paramControls.map((control) => {
           return (
-            <>
-              <span className="text-white">{control.name}</span>
+            <div className="flex">
+              <span className="flex-none">{control.name}</span>
+              {/* TODO: make a slider React component. Dealing with the vanilla one is ridiculous. */}
+              <div className="flex-grow"/>
               <input
                 type="range"
                 min={control.min}
@@ -62,13 +64,13 @@ function ControlPanel () {
                 step={control.step}
                 defaultValue={control.startingValue}
                 onChange={e => control.set(parseFloat(e.target.value))}
+                className="flex-none"
               />
-            </>
+            </div>
           );
         })}
       </div>
     </div>
-
   );
 }
 
